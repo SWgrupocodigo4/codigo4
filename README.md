@@ -8,5 +8,17 @@ El proyecto busca unir tecnología y deporte, ofreciendo una solución moderna p
 - dbdiagram.io
 - HTML
 - CSS
+- Visual Studio code
 # ENTORNO DE DESARROLLO:
-
+1.Lenguaje de programación y frameworks
+-Backend (JavaScript)
+-Frontend (CSS, HTML)
+2.Base de datos
+-SQL Server management
+3.Herramientas de desarrollo
+-Node JS
+-NPM (YARN)
+#INTEGRANTES DEL GRUPO:
+- Montenegro Reategui Daniel Enrique (Lider Técnico)
+- Flores Burga Jhonatan (Desarrollador Backend)
+- Leon Chuqumajo Roberth (Desarrollador Frontend)
