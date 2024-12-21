@@ -4,22 +4,18 @@ El proyecto busca unir tecnología y deporte, ofreciendo una solución moderna p
 # TECNOLOGIAS A USAR:
 - Node JS
 - TypeScript
-- SQL server management
+- Postgre
 - dbdiagram.io
-- HTML
-- CSS
 - Visual Studio code
 # ENTORNO DE DESARROLLO:
 
 1.Lenguaje de programación y frameworks
 
--Backend (JavaScript)
-
--Frontend (CSS, HTML)
+-Backend (TypeScript)
 
 2.Base de datos
 
--SQL Server management
+-Postgre
 
 3.Herramientas de desarrollo
 
@@ -30,4 +26,4 @@ El proyecto busca unir tecnología y deporte, ofreciendo una solución moderna p
 # INTEGRANTES DEL GRUPO:
 - Montenegro Reategui Daniel Enrique (Lider Técnico)
 - Flores Burga Jhonatan (Desarrollador Backend)
-- Leon Chuqumajo Roberth (Desarrollador Frontend)
+- Leon Chuqumajo Roberth (Desarrollador Backend)
