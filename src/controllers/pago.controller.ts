@@ -50,8 +50,8 @@ export const actualizarPago = async (req: Request, res: Response) => {
             res.status(404).json(BaseResponse.error(Message.NOT_FOUND,404));
             return;
         }
-        const updateProveedor: Pago = await pagoService.actualizarPago(Number(idPago),pago);
-        res.json(BaseResponse.success(updateProveedor, Message.ACTUALIZADO_OK));
+        const updatePago: Pago = await pagoService.actualizarPago(Number(idPago),pago);
+        res.json(BaseResponse.success(updatePago, Message.ACTUALIZADO_OK));
     } catch (error) {
         console.error(error);
         res.status(500).json(BaseResponse.error(error.message));

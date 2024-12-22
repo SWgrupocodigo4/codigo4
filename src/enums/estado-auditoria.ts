@@ -1,4 +1,4 @@
 export enum EstadoAuditoria {
-    ACTIVO = '1',
-    INACTIVO = '0'
+    ACTIVO = 'A',
+    INACTIVO = 'I'
 }

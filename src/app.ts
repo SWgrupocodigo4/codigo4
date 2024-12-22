@@ -7,7 +7,7 @@ const app: Application = express();
 
 app.use(express.json());
 app.use(morgan('dev'));
-app.use('/api/v1/proveedores',pagoRouter);
+app.use('/api/v1/pagos',pagoRouter);
 
 
 export const startServer = async () => {
