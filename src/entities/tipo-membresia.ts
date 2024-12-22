@@ -1,4 +1,5 @@
-import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import {Socio} from "./socio";
 
 @Entity('tipo_membresia')
 export class TipoMembresia {
@@ -22,4 +23,7 @@ export class TipoMembresia {
 
     @Column({ name: 'estado_auditoria' })
     estadoAuditoria: string;
+
+    @OneToMany(()=>Socio,(socio)=>socio.tipoMembresia)
+    socios: Socio[];
 }

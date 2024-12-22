@@ -3,6 +3,7 @@ import morgan from "morgan";
 import pagoRouter from './routes/pago.route'
 import tipoMembresiaRouter from './routes/tipo-membresia.route';
 import instalacionesRouter from './routes/instalaciones.route'; 
+import socioRouter from './routes/socio.route';
 import { AppDataSource } from "./config/db.config";
 
 const app: Application = express();
@@ -12,6 +13,7 @@ app.use(morgan('dev'));
 app.use('/api/v1/pagos',pagoRouter);
 app.use('/api/v1/tipo-membresia', tipoMembresiaRouter);
 app.use('/api/v1/instalaciones', instalacionesRouter);
+app.use('/api/v1/socios', socioRouter);
 
 
 export const startServer = async () => {
