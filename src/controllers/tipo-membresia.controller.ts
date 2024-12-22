@@ -29,10 +29,14 @@ export const listarTiposMembresia = async (req: Request, res: Response) => {
 
 export const obtenerTipoMembresia = async (req: Request, res: Response) => {
     try {
-        console.log('obtenerTipoMembresia');
-        const id = Number(req.params.id);
-        const tipoMembresia: TipoMembresia = await tipoMembresiaService.obtenerTipoMembresia(id);
+        const {idTipoMembresia} = req.params;
+        const tipoMembresia: TipoMembresia = await tipoMembresiaService.obtenerTipoMembresia(Number(idTipoMembresia));
+        if(!tipoMembresia) {
+            res.status(404).json(BaseResponse.error(Message.NOT_FOUND,404));
+            return;
+        }
         res.json(BaseResponse.success(tipoMembresia));
+
     } catch (error) {
         console.error(error);
         res.status(500).json(BaseResponse.error(error.message));
@@ -41,11 +45,15 @@ export const obtenerTipoMembresia = async (req: Request, res: Response) => {
 
 export const actualizarTipoMembresia = async (req: Request, res: Response) => {
     try {
-        console.log('actualizarTipoMembresia');
-        const id = Number(req.params.id);
-        const tipoMembresia: Partial<TipoMembresia> = req.body;
-        const updatedTipoMembresia: TipoMembresia = await tipoMembresiaService.actualizarTipoMembresia(id, tipoMembresia);
-        res.json(BaseResponse.success(updatedTipoMembresia, Message.ACTUALIZADO_OK));
+        
+        const { idTipoMembresia } = req.params;
+                const tipomembresia: Partial<TipoMembresia> = req.body;
+                if(!(await tipoMembresiaService.obtenerTipoMembresia(Number(idTipoMembresia)))){
+                    res.status(404).json(BaseResponse.error(Message.NOT_FOUND,404));
+                    return;
+                }
+                const updateTipoMembresia: TipoMembresia = await tipoMembresiaService.actualizarTipoMembresia(Number(idTipoMembresia),tipomembresia);
+                res.json(BaseResponse.success(updateTipoMembresia, Message.ACTUALIZADO_OK));
     } catch (error) {
         console.error(error);
         res.status(500).json(BaseResponse.error(error.message));
@@ -54,9 +62,12 @@ export const actualizarTipoMembresia = async (req: Request, res: Response) => {
 
 export const darBajaTipoMembresia = async (req: Request, res: Response) => {
     try {
-        console.log('darBajaTipoMembresia');
-        const id = Number(req.params.id);
-        await tipoMembresiaService.darBajaTipoMembresia(id);
+        const {idTipoMembresia} = req.params;
+        if(!(await tipoMembresiaService.obtenerTipoMembresia(Number(idTipoMembresia)))){
+            res.status(404).json(BaseResponse.error(Message.NOT_FOUND,404));
+            return;
+        }
+        await tipoMembresiaService.darBajaTipoMembresia(Number(idTipoMembresia));
         res.json(BaseResponse.success(null, Message.ELIMINADO_OK));
     } catch (error) {
         console.error(error);
