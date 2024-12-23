@@ -11,6 +11,10 @@ export class SocioPago {
     @JoinColumn({name: 'id_socio'})
     socio: Socio;
 
+    @ManyToOne(() => Pago, (pago) => pago.sociospago)
+    @JoinColumn({name: 'id_pago'})
+    pago: Pago;
+
 
     @CreateDateColumn({name: 'fecha_pago'})
     fechaCreacionAuditoria: Date;

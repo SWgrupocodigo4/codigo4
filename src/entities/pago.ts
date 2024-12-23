@@ -1,4 +1,5 @@
-import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import {SocioPago} from "./socio-pago";
 
 @Entity('pagos')
 export class Pago {
@@ -19,5 +20,9 @@ export class Pago {
 
     @Column({name: 'estado_auditoria'})
     estadoAuditoria: string;
+
+    @OneToMany(()=>SocioPago,(socioPago)=>socioPago.socio)
+    sociospago: SocioPago[];
+
 }
 

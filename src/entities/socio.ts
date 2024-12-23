@@ -33,7 +33,7 @@ export class Socio {
     @Column({name: 'estado_auditoria'})
     estadoAuditoria: string;
 
-    @OneToMany(()=>SocioPago,(socioPago)=>socioPago.socio)
+    @OneToMany(()=>SocioPago,(socioPago)=>socioPago.pago)
     sociospago: SocioPago[];
     
 }
