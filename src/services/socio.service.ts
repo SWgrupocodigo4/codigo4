@@ -10,7 +10,6 @@ export const insertarSocio = async (data: Partial<Socio>): Promise<Socio> => {
     return await repository.findOne({where: {idSocio: newSocio.idSocio}})
 }
 
-
 export const listarSocios = async (): Promise<Socio[]> => {
     return await repository.find({
         where: { estadoAuditoria: EstadoAuditoria.ACTIVO },
@@ -18,17 +17,15 @@ export const listarSocios = async (): Promise<Socio[]> => {
     });
 }
 
-
-
 export const obtenerSocio = async (idSocio: number): Promise<Socio> => {
     return await repository.findOne({ where: { idSocio, estadoAuditoria: EstadoAuditoria.ACTIVO }, relations: ['tipoMembresia'] });
 }
 
-/*export const actualizarSocio = async (idSocio: number, data: Partial<Socio>): Promise<Socio> => {
+export const actualizarSocio = async (idSocio: number, data: Partial<Socio>): Promise<Socio> => {
     await repository.update(idSocio, data);
     return obtenerSocio(idSocio);
 }
 
 export const darBajaSocio = async (idSocio: number): Promise<void> => {
     await repository.update(idSocio, { estadoAuditoria: EstadoAuditoria.INACTIVO });
-}*/
+}
