@@ -29,9 +29,13 @@ export const listarInstalaciones = async (req: Request, res: Response) => {
 
 export const obtenerInstalaciones = async (req: Request, res: Response) => {
     try {
-        console.log('obtenerInstalacion');
-        const id = Number(req.params.id);
-        const instalacion: Instalacion = await instalacionesService.obtenerInstalaciones(id);
+        const {idInstalacion} = req.params;
+        const instalacion: Instalacion = await instalacionesService.obtenerInstalaciones(Number(idInstalacion));
+        
+        if(!instalacion) {
+            res.status(404).json(BaseResponse.error(Message.NOT_FOUND,404));
+            return;
+        }
         res.json(BaseResponse.success(instalacion));
     } catch (error) {
         console.error(error);
@@ -41,11 +45,13 @@ export const obtenerInstalaciones = async (req: Request, res: Response) => {
 
 export const actualizarInstalaciones = async (req: Request, res: Response) => {
     try {
-        console.log('actualizarInstalacion');
-        const id = Number(req.params.id);
+        const {idInstalacion} = req.params;
         const instalacion: Partial<Instalacion> = req.body;
-        const updatedInstalacion: Instalacion = await instalacionesService.actualizarInstalaciones(id, instalacion);
-        res.json(BaseResponse.success(updatedInstalacion, Message.ACTUALIZADO_OK));
+        if(!(await instalacionesService.obtenerInstalaciones(Number(idInstalacion)))){
+            res.status(404).json(BaseResponse.error(Message.NOT_FOUND,404));
+            return;
+        }
+        res.json(BaseResponse.success(actualizarInstalaciones, Message.ACTUALIZADO_OK));
     } catch (error) {
         console.error(error);
         res.status(500).json(BaseResponse.error(error.message));
@@ -54,9 +60,12 @@ export const actualizarInstalaciones = async (req: Request, res: Response) => {
 
 export const darBajaInstalaciones = async (req: Request, res: Response) => {
     try {
-        console.log('darBajaInstalacion');
-        const id = Number(req.params.id);
-        await instalacionesService.darBajaInstalaciones(id);
+        const {idInstalacion} = req.params;
+        if(!(await instalacionesService.obtenerInstalaciones(Number(idInstalacion)))){
+            res.status(404).json(BaseResponse.error(Message.NOT_FOUND,404));
+            return;
+        }
+        await instalacionesService.darBajaInstalaciones(Number(idInstalacion));
         res.json(BaseResponse.success(null, Message.ELIMINADO_OK));
     } catch (error) {
         console.error(error);
