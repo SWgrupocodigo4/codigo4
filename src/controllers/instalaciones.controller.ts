@@ -51,6 +51,7 @@ export const actualizarInstalaciones = async (req: Request, res: Response) => {
             res.status(404).json(BaseResponse.error(Message.NOT_FOUND,404));
             return;
         }
+        const actualizarInstalaciones: Instalacion = await instalacionesService.actualizarInstalaciones(Number(idInstalacion),instalacion);
         res.json(BaseResponse.success(actualizarInstalaciones, Message.ACTUALIZADO_OK));
     } catch (error) {
         console.error(error);
