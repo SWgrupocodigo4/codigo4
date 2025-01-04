@@ -2,7 +2,7 @@ import express, { Application, Request, Response } from "express";
 import morgan from "morgan";
 import pagoRouter from './routes/pago.route'
 import tipoMembresiaRouter from './routes/tipo-membresia.route';
-import instalacionesRouter from './routes/instalaciones.route'; 
+import instalacionesRouter from './routes/instalacion.route'; 
 import socioRouter from './routes/socio.route';
 import sociopagoRouter from './routes/socio-pago.route';
 import { AppDataSource } from "./config/db.config";

@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { BaseResponse } from "../shared/base-response";
-import * as instalacionesService from "../services/instalaciones.service";
-import { Instalacion } from "../entities/instalaciones";
+import * as instalacionesService from "../services/instalacion.service";
+import { Instalacion } from "../entities/instalacion";
 import { Message } from "../enums/message";
 
 export const insertarInstalaciones = async (req: Request, res: Response) => {

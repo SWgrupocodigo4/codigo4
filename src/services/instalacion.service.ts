@@ -1,5 +1,5 @@
 import { AppDataSource } from "../config/db.config";
-import { Instalacion } from "../entities/instalaciones";
+import { Instalacion } from "../entities/instalacion";
 import { EstadoAuditoria } from "../enums/estado-auditoria";
 
 const repository = AppDataSource.getRepository(Instalacion);

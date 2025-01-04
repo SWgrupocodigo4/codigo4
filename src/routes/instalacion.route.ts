@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { insertarInstalaciones, listarInstalaciones, obtenerInstalaciones, actualizarInstalaciones, darBajaInstalaciones } from '../controllers/instalaciones.controller';
+import { insertarInstalaciones, listarInstalaciones, obtenerInstalaciones, actualizarInstalaciones, darBajaInstalaciones } from '../controllers/instalacion.controller';
 
 const router: Router = Router();
 
