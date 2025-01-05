@@ -11,11 +11,17 @@ export class Socio {
     @Column({name: 'nombre'})
     nombre: string;
 
-    @Column({name: 'apellid'})
-    apellido: string;
+    @Column({name: 'apellido_paterno'})
+    apellido_paterno: string;
 
-    @Column({name: 'dni'})
-    dni: string;
+    @Column({name: 'apellido_materno'})
+    apellido_materno: string;
+
+    @Column({name: 'tipo_documento'})
+    tipo_documento: string;
+
+    @Column({name: 'nro_documento'})
+    nro_documento: string;
 
     @Column({name: 'correo'})
     correo: string;
