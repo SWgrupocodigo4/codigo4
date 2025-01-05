@@ -4,7 +4,7 @@ El proyecto busca unir tecnología y deporte, ofreciendo una solución moderna p
 # TECNOLOGIAS A USAR:
 - Node JS
 - TypeScript
-- Postgre
+- Postgres
 - dbdiagram.io
 - Visual Studio code
 # ENTORNO DE DESARROLLO:
@@ -15,7 +15,7 @@ El proyecto busca unir tecnología y deporte, ofreciendo una solución moderna p
 
 2.Base de datos
 
--Postgre
+-Postgres
 
 3.Herramientas de desarrollo
 
