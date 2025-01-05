@@ -4,8 +4,6 @@ import { TipoMembresia } from "../entities/tipo-membresia";
 import { Instalacion } from "../entities/instalacion";
 import {Socio} from "../entities/socio";
 import { SocioPago } from "../entities/socio-pago";
-import {Rol} from "../entities/rol";
-import { Usuario } from "../entities/usuario";
 
 import { DB_DATABASE, DB_HOST, DB_PASSWORD, DB_PORT, DB_TYPE, DB_USERNAME } from "../shared/constants";
 
@@ -16,5 +14,5 @@ export const AppDataSource = new DataSource({
     username: DB_USERNAME,
     password: DB_PASSWORD,
     database: DB_DATABASE,
-    entities: [Pago, TipoMembresia,Instalacion, Socio, SocioPago, Rol, Usuario],
+    entities: [Pago, TipoMembresia,Instalacion, Socio, SocioPago],
 });
