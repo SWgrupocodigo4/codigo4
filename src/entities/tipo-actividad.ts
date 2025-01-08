@@ -1,5 +1,5 @@
 import { Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
-//import {Socio} from "./socio";
+import {Actividad} from "./actividad";
 
 @Entity('tipo_actividad')
 export class TipoActividad {
@@ -17,7 +17,8 @@ export class TipoActividad {
 
     @Column({ name: 'estado_auditoria' })
     estadoAuditoria: string;
+    
+    @OneToMany(()=>Actividad,(actividad)=>actividad.tipoActividad)
+    actividades: Actividad[];
 
-//     @OneToMany(()=>Socio,(socio)=>socio.tipoMembresia)
-//     socios: Socio[];
 }
