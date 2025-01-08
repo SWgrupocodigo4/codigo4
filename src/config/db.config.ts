@@ -19,4 +19,4 @@ export const AppDataSource = new DataSource({
     password: DB_PASSWORD,
     database: DB_DATABASE,
     entities: [Pago, TipoMembresia,Instalacion, Socio, SocioPago, Rol, Usuario, TipoActividad, Actividad],
-});
+}); 
