@@ -1,5 +1,6 @@
 import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { Rol } from "./rol";
+import{Actividad} from "./actividad";
 
 @Entity('usuarios')
 export class Usuario {
@@ -30,5 +31,8 @@ export class Usuario {
     @ManyToOne(() => Rol, (rol) => rol.usuarios)
     @JoinColumn({ name: 'id_rol' })
     rol: Rol;
+
+    @OneToMany(()=>Actividad,(actividad)=>actividad.usuario)
+    actividades: Actividad[];
 
 }

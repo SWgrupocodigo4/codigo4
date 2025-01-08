@@ -1,4 +1,5 @@
-import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, OneToMany } from "typeorm";
+import{Actividad} from "./actividad";
 
 @Entity('instalaciones')
 export class Instalacion {
@@ -19,4 +20,7 @@ export class Instalacion {
 
     @Column({ name: 'estado_auditoria', type: 'char', length: 1, default: 'A' })
     estadoAuditoria: string;
+
+    @OneToMany(()=>Actividad,(actividad)=>actividad.instalacion)
+    actividades: Actividad[];
 }
