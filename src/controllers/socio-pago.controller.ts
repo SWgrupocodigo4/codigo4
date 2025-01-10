@@ -2,8 +2,6 @@ import { Request, Response } from "express"
 import { BaseResponse } from "../shared/base-response";
 import * as socioPagoService from "../services/socio-pago.service";
 import {SocioPago} from "../entities/socio-pago";
-import { Socio } from "../entities/socio";
-import { Pago } from '../entities/pago';
 import { Message } from "../enums/message";
 
 export const insertarSocioPago = async (req: Request, res: Response) => {

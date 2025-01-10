@@ -1,7 +1,5 @@
 import { AppDataSource } from "../config/db.config";
 import {SocioPago} from "../entities/socio-pago";
-import { Socio } from "../entities/socio";
-import {Pago} from "../entities/pago";
 import { EstadoAuditoria } from "../enums/estado-auditoria";
 
 

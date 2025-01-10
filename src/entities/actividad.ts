@@ -1,7 +1,8 @@
-import { Column, CreateDateColumn, Entity, JoinColumn, ManyToMany, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import {TipoActividad} from "./tipo-actividad";
 import {Instalacion} from "./instalacion";
 import {Usuario} from "./usuario";
+import {Participacion} from "./participacion";
 
 @Entity('actividades')
 export class Actividad {
@@ -41,5 +42,7 @@ export class Actividad {
     @JoinColumn({name: 'id_usuario'})
     usuario: Usuario;
 
+    @OneToMany(()=>Participacion,(participacion)=>participacion.actividad)
+    participaciones: Participacion[];
 
 }
