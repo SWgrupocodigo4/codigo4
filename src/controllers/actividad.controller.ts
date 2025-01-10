@@ -2,9 +2,6 @@ import { Request, Response } from "express";
 import { BaseResponse } from "../shared/base-response";
 import * as actividadService from "../services/actividad.service";
 import { Actividad } from "../entities/actividad";
-import { Usuario } from "../entities/usuario";
-import { TipoActividad } from "../entities/tipo-actividad";
-import{Instalacion} from "../entities/instalacion";
 import { Message } from "../enums/message";
 
 export const insertarActividad = async (req: Request, res: Response) => {

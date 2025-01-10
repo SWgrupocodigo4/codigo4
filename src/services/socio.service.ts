@@ -1,6 +1,5 @@
 import { AppDataSource } from "../config/db.config";
 import { Socio } from "../entities/socio";
-import { TipoMembresia } from "../entities/tipo-membresia"; 
 import { EstadoAuditoria } from "../enums/estado-auditoria";
 
 const repository = AppDataSource.getRepository(Socio);

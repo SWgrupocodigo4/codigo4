@@ -2,7 +2,6 @@ import { Request, Response } from "express";
 import { BaseResponse } from "../shared/base-response";
 import * as usuarioService from "../services/usuario.service";
 import { Usuario } from "../entities/usuario";
-import { Rol } from "../entities/rol";
 import { Message } from "../enums/message";
 
 export const insertarUsuario = async (req: Request, res: Response) => {

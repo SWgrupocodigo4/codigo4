@@ -1,4 +1,4 @@
-import express, { Application, Request, Response } from "express";
+import express, { Application } from "express";
 import morgan from "morgan";
 import pagoRouter from './routes/pago.route'
 import tipoMembresiaRouter from './routes/tipo-membresia.route';
@@ -9,6 +9,7 @@ import rolRouter from './routes/rol.route';
 import usuarioRouter from './routes/usuario.route';
 import tipoActividadRouter from './routes/tipo-actividad.route';
 import actividadRouter from './routes/actividad.route';
+import participacionRouter from './routes/participacion.route';
 import { AppDataSource } from "./config/db.config";
 
 
@@ -25,6 +26,7 @@ app.use('/api/v1/roles', rolRouter);
 app.use('/api/v1/usuarios', usuarioRouter);
 app.use('/api/v1/tipo-actividades', tipoActividadRouter);
 app.use('/api/v1/actividades', actividadRouter);
+app.use('/api/v1/participaciones', participacionRouter);
 
 
 
