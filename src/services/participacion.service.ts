@@ -10,7 +10,10 @@ export const insertarParticipacion = async (data: Partial<Participacion>): Promi
 }
 
 export const listarParticipaciones = async (): Promise<Participacion[]> => {
-    return await repository.find({where: {estadoAuditoria: EstadoAuditoria.ACTIVO}});
+    return await repository.find({
+        where: {estadoAuditoria: EstadoAuditoria.ACTIVO},
+        relations: ['actividad', 'socio']
+    });
 }
 
 export const obtenerParticipacion = async (idParticipacion: number): Promise<Participacion> => {
