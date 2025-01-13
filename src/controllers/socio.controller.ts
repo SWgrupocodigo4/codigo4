@@ -3,10 +3,16 @@ import { BaseResponse } from "../shared/base-response";
 import * as socioService from "../services/socio.service";
 import { Socio } from "../entities/socio";
 import { Message } from "../enums/message";
+import {insertarSocioSchema, actualizarSocioSchema} from "../validators/socio.schema";
 
 export const insertarSocio = async (req: Request, res: Response) => {
     try {
         console.log('insertarSocio');
+        const { error } = insertarSocioSchema.validate(req.body);
+        if(error){
+            res.status(400).json(BaseResponse.error(error.message, 400));
+            return;
+        }
         const socio: Partial<Socio> = req.body;
         const newSocio: Socio = await socioService.insertarSocio(socio);
         res.json(BaseResponse.success(newSocio,Message.INSERTADO_OK));
@@ -48,6 +54,11 @@ export const obtenerSocio = async (req: Request, res: Response) => {
 export const actualizarSocio = async (req: Request, res: Response) => {
     try {
         const { idSocio } = req.params;
+        const { error } = actualizarSocioSchema.validate(req.body);
+        if(error){
+            res.status(400).json(BaseResponse.error(error.message, 400));
+            return;
+        }
         const socio: Partial<Socio> = req.body;
         if(!(await socioService.obtenerSocio(Number(idSocio)))){
             res.status(404).json(BaseResponse.error(Message.NOT_FOUND,404));
