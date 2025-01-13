@@ -3,7 +3,7 @@ import { BaseResponse } from "../shared/base-response";
 import * as usuarioService from "../services/usuario.service";
 import { Usuario } from "../entities/usuario";
 import { Message } from "../enums/message";
-import { insertarUsuarioSchema, actualizarUsuarioSchema  } from "../validators/usuario.schema";
+import { insertarUsuarioSchema, actualizarUsuarioSchema } from "../validators/usuario.schema";
 
 export const insertarUsuario = async (req: Request, res: Response) => {
     try {

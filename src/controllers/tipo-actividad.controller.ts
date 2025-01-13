@@ -3,10 +3,16 @@ import { BaseResponse } from "../shared/base-response";
 import * as tipoActividadService from "../services/tipo-actividad.service";
 import { TipoActividad } from "../entities/tipo-actividad";
 import { Message } from "../enums/message";
+import { insertarTipoActividadSchema, actualizarTipoActividadSchema } from "../validators/tipo-actividad.schema";
 
 export const insertarTipoActividad = async (req: Request, res: Response) => {
     try {
         console.log('insertarTipoActividad');
+        const { error } = insertarTipoActividadSchema.validate(req.body);
+        if (error) {
+            res.status(400).json(BaseResponse.error(error.message, 400));
+            return;
+        }
         const tipoActividad: Partial<TipoActividad> = req.body;
         const newTipoActividad: TipoActividad = await tipoActividadService.insertarTipoActividad(tipoActividad);
         res.json(BaseResponse.success(newTipoActividad, Message.INSERTADO_OK));
@@ -29,10 +35,10 @@ export const listarTipoActividades = async (req: Request, res: Response) => {
 
 export const obtenerTipoActividad = async (req: Request, res: Response) => {
     try {
-        const {idTipoActividad} = req.params;
+        const { idTipoActividad } = req.params;
         const tipoActividad: TipoActividad = await tipoActividadService.obtenerTipoActividad(Number(idTipoActividad));
-        if(!tipoActividad) {
-            res.status(404).json(BaseResponse.error(Message.NOT_FOUND,404));
+        if (!tipoActividad) {
+            res.status(404).json(BaseResponse.error(Message.NOT_FOUND, 404));
             return;
         }
         res.json(BaseResponse.success(tipoActividad));
@@ -46,13 +52,18 @@ export const obtenerTipoActividad = async (req: Request, res: Response) => {
 export const actualizarTipoActividad = async (req: Request, res: Response) => {
     try {
         const { idTipoActividad } = req.params;
-                const tipoActividad: Partial<TipoActividad> = req.body;
-                if(!(await tipoActividadService.obtenerTipoActividad(Number(idTipoActividad)))){
-                    res.status(404).json(BaseResponse.error(Message.NOT_FOUND,404));
-                    return;
-                }
-                const updateTipoActividad: TipoActividad = await tipoActividadService.actualizarTipoActividad(Number(idTipoActividad),tipoActividad);
-                res.json(BaseResponse.success(updateTipoActividad, Message.ACTUALIZADO_OK));
+        const { error } = actualizarTipoActividadSchema.validate(req.body);
+        if (error) {
+            res.status(400).json(BaseResponse.error(error.message, 400));
+            return;
+        }
+        const tipoActividad: Partial<TipoActividad> = req.body;
+        if (!(await tipoActividadService.obtenerTipoActividad(Number(idTipoActividad)))) {
+            res.status(404).json(BaseResponse.error(Message.NOT_FOUND, 404));
+            return;
+        }
+        const updateTipoActividad: TipoActividad = await tipoActividadService.actualizarTipoActividad(Number(idTipoActividad), tipoActividad);
+        res.json(BaseResponse.success(updateTipoActividad, Message.ACTUALIZADO_OK));
     } catch (error) {
         console.error(error);
         res.status(500).json(BaseResponse.error(error.message));
@@ -62,8 +73,8 @@ export const actualizarTipoActividad = async (req: Request, res: Response) => {
 export const darBajaTipoActividad = async (req: Request, res: Response) => {
     try {
         const { idTipoActividad } = req.params;
-        if(!(await tipoActividadService.obtenerTipoActividad(Number(idTipoActividad)))){
-            res.status(404).json(BaseResponse.error(Message.NOT_FOUND,404));
+        if (!(await tipoActividadService.obtenerTipoActividad(Number(idTipoActividad)))) {
+            res.status(404).json(BaseResponse.error(Message.NOT_FOUND, 404));
             return;
         }
         await tipoActividadService.darBajaTipoActividad(Number(idTipoActividad));
