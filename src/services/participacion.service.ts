@@ -6,7 +6,7 @@ const repository = AppDataSource.getRepository(Participacion);
 
 export const insertarParticipacion = async (data: Partial<Participacion>): Promise<Participacion> => {
     const newParticipacion: Participacion = await repository.save(data);
-    return await repository.findOne({where: {idParticipacion: newParticipacion.idParticipacion}});
+    return await repository.findOne({where: {idParticipacion: newParticipacion.idParticipacion}, relations: ['actividad', 'socio']});
 }
 
 export const listarParticipaciones = async (): Promise<Participacion[]> => {
@@ -17,7 +17,7 @@ export const listarParticipaciones = async (): Promise<Participacion[]> => {
 }
 
 export const obtenerParticipacion = async (idParticipacion: number): Promise<Participacion> => {
-    return await repository.findOne({where: {idParticipacion, estadoAuditoria: EstadoAuditoria.ACTIVO}});
+    return await repository.findOne({where: {idParticipacion, estadoAuditoria: EstadoAuditoria.ACTIVO}, relations: ['actividad', 'socio']});
 }
 
 export const actualizarParticipacion = async (idParticipacion: number, data: Partial<Participacion>): Promise<Participacion> => {

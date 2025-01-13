@@ -3,10 +3,16 @@ import * as pagoService from '../services/pago.service';
 import { Pago } from "../entities/pago";
 import { BaseResponse } from '../shared/base-response';
 import { Message } from '../enums/message';
+import {insertarPagoSchema, actualizarPagoSchema} from '../validators/pago.schema';
 
 export const insertarPago = async (req: Request, res: Response) => {
     try {
         console.log('insertarPago');
+        const { error } = insertarPagoSchema.validate(req.body);
+        if(error){
+            res.status(400).json(BaseResponse.error(error.message, 400));
+            return;
+        }
         const pago: Partial<Pago> = req.body;
         const newPago: Pago = await pagoService.insertarPago(pago)
         res.json(BaseResponse.success(newPago, Message.INSERTADO_OK));
@@ -45,6 +51,11 @@ export const obtenerPago = async (req: Request, res: Response) => {
 export const actualizarPago = async (req: Request, res: Response) => {
     try {
         const { idPago } = req.params;
+        const { error } = actualizarPagoSchema.validate(req.body);
+        if(error){
+            res.status(400).json(BaseResponse.error(error.message, 400));
+            return;
+        }
         const pago: Partial<Pago> = req.body;
         if(!(await pagoService.obtenerPago(Number(idPago)))){
             res.status(404).json(BaseResponse.error(Message.NOT_FOUND,404));

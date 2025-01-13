@@ -12,7 +12,7 @@ export class Pago {
     @Column({name: 'descripcion'})
     descripcion: string;
 
-    @Column({name: 'monto'})
+    @Column({name: 'monto', type: 'numeric'})
     monto: number;
 
     @CreateDateColumn({name: 'fecha_creacion_auditoria'})
