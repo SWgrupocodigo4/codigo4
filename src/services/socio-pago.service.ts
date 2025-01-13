@@ -7,7 +7,7 @@ const repository = AppDataSource.getRepository(SocioPago);
 
 export const insertarSocioPago = async (data: Partial<SocioPago>): Promise<SocioPago> => {
     const newSocioPago: SocioPago = await repository.save(data);
-    return await repository.findOne({where: { idSocioPago: newSocioPago.idSocioPago}});
+    return await repository.findOne({where: { idSocioPago: newSocioPago.idSocioPago},relations: ['socio', 'pago']});
 }
 
 export const listarSocioPago = async (): Promise<SocioPago[]> => {
