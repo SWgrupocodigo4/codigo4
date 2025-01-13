@@ -3,10 +3,16 @@ import { BaseResponse } from "../shared/base-response";
 import * as instalacionesService from "../services/instalacion.service";
 import { Instalacion } from "../entities/instalacion";
 import { Message } from "../enums/message";
+import {insertarInstalacionSchema, actualizarInstalacionSchema } from "../validators/instalacion.schema";
 
 export const insertarInstalaciones = async (req: Request, res: Response) => {
     try {
         console.log('insertarInstalacion');
+        const {error} = insertarInstalacionSchema.validate(req.body);
+        if(error){
+            res.status(400).json(BaseResponse.error(error.message, 400));
+            return;
+        }
         const instalacion: Partial<Instalacion> = req.body;
         const newInstalacion: Instalacion = await instalacionesService.insertarInstalaciones(instalacion);
         res.json(BaseResponse.success(newInstalacion, Message.INSERTADO_OK));
@@ -46,6 +52,11 @@ export const obtenerInstalaciones = async (req: Request, res: Response) => {
 export const actualizarInstalaciones = async (req: Request, res: Response) => {
     try {
         const {idInstalacion} = req.params;
+        const {error} = actualizarInstalacionSchema.validate(req.body);
+        if(error){
+            res.status(400).json(BaseResponse.error(error.message, 400));
+            return;
+        }
         const instalacion: Partial<Instalacion> = req.body;
         if(!(await instalacionesService.obtenerInstalaciones(Number(idInstalacion)))){
             res.status(404).json(BaseResponse.error(Message.NOT_FOUND,404));

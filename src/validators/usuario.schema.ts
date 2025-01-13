@@ -7,7 +7,7 @@ export const insertarUsuarioSchema = Joi.object({
     apellido: Joi.string().min(3).max(50).required(),
     correo: Joi.string().min(3).max(50).email({ minDomainSegments: 2, tlds: { allow: false } }).required(),
     rol: Joi.object({
-        idRol: Joi.number().required()
+        idRol: Joi.number().min(1).required()
     }).required()
 });
 
@@ -18,6 +18,6 @@ export const actualizarUsuarioSchema = Joi.object({
     apellido: Joi.string().min(3).max(50),
     correo: Joi.string().min(3).max(50).email({ minDomainSegments: 2, tlds: { allow: false } }),
     rol: Joi.object({
-        idRol: Joi.number()
+        idRol: Joi.number().min(1)
     })
 });
